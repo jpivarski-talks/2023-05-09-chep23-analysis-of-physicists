@@ -74,9 +74,43 @@
 
 % START START START START START START START START START START START START START
 
-\begin{frame}{First slide}
+\begin{frame}{Dark computing}
+\vspace{0.25 cm}
+\begin{columns}
+\column{1.1\linewidth}
+\only<1>{\includegraphics[width=\linewidth]{PLOTS/analysis-chain-0.pdf}}\only<2->{\includegraphics[width=\linewidth]{PLOTS/analysis-chain.pdf}}
+\end{columns}
+
 \vspace{0.5 cm}
-HERE
+\begin{itemize}
+\item<3-> Good software depends on mutual understanding (between developers and users) of what the software is for and how it's supposed to be used.
+\item<4-> The ``analysis'' step is the only one in the pipeline for which we don't even know \underline{\it who} all the users are.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{We don't do this}
+\vspace{1 cm}
+\begin{center}
+\includegraphics[width=0.5\linewidth]{PLOTS/iphone-send-usage-data.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{So what can we do instead?}
+\vspace{0.35 cm}
+\begin{columns}
+\column{1.05\linewidth}
+
+\renewcommand{\arraystretch}{0.85}
+\begin{tabular}{p{3 cm} p{4.7 cm} p{5.7 cm}}
+{\bf Method} & {\bf Good} & {\bf Bad} \\\hline
+\uncover<1->{Bug-reports} & \uncover<1->{Resolve immediate needs.} & \uncover<1->{Only hear from proactive people.} \\
+\uncover<2->{Surveys} & \uncover<2->{Can directly ask people what they think. Quantitative.} & \uncover<2->{Are the people who didn't fill it out correlated with the questions?} \\
+\uncover<3->{Focus groups} & \uncover<3->{As above, but open to free-form response.} & \uncover<3->{Need to generalize from a small group to a large one.} \\
+\uncover<4->{Download stats} & \uncover<4->{People vote with their feet. Quantitative.} & \uncover<4->{Skewed by batch jobs. Very coarse-grained info: \underline{\it what} do people like?} \\
+\uncover<5->{Textual analysis of CHEP/ACAT} & \uncover<5->{Long-view historical trends.} & \uncover<5->{Only for those who give talks, and what they choose to talk about.} \\
+\uncover<6->{Analysis of source code online} & \uncover<6->{Fine-grained, many users, quantitative.} & \uncover<6->{Only public repos, have to identify demographics with some seed: how do you identify ``physicists''?} \\
+\end{tabular}
+\end{columns}
 \end{frame}
 
 \end{document}
