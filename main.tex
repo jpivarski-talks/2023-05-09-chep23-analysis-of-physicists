@@ -104,11 +104,11 @@
 \begin{tabular}{p{3 cm} p{4.7 cm} p{5.7 cm}}
 {\bf Method} & {\bf Good} & {\bf Bad} \\\hline
 \uncover<2->{Bug-reports} & \uncover<2->{Resolve immediate needs.} & \uncover<2->{Only hear from proactive people.} \\
-\uncover<3->{Surveys} & \uncover<3->{Can directly ask people what people think. Quantitative.} & \uncover<3->{Are the people who didn't fill it out correlated with the questions?} \\
+\uncover<3->{Surveys} & \uncover<3->{Can directly ask people what they think. Quantitative.} & \uncover<3->{Are the people who didn't fill it out correlated with the questions?} \\
 \uncover<4->{Focus groups} & \uncover<4->{As above, but open to free-form, generating new ideas.} & \uncover<4->{Need to generalize from a small group to a large one.} \\
 \uncover<5->{Download stats} & \uncover<5->{People vote with their feet. Quantitative.} & \uncover<5->{Skewed by batch jobs. Very coarse-grained: only know package-level.} \\
 \uncover<6->{Textual analysis of CHEP/ACAT} & \uncover<6->{Long-view historical trends.} & \uncover<6->{Only for those who give talks, and what they choose to talk about.} \\
-\uncover<7->{Analysis of source code online} & \uncover<7->{Fine-grained, quantitative, average over many users.} & \uncover<7->{Only public repos, have to identify demographics with some seed: how do you identify ``physicists''?} \\
+\uncover<7->{Analysis of source code online} & \uncover<7->{Fine-grained, quantitative, average over many users.} & \uncover<7->{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?} \\
 \end{tabular}
 \end{columns}
 \end{frame}
@@ -133,15 +133,20 @@ A few years ago, I stumbled upon a good technique:
 \end{frame}
 
 \begin{frame}{A complementary dataset}
+\vspace{0.7 cm}
+\vspace{\baselineskip}
+
 \begin{itemize}
 \item GitHub Archive (\textcolor{blue}{\small\bf\url{https://www.gharchive.org/}}) has been collecting all fork, PR, issue, wiki, watch, and comment events since 2017. We can get a list of GitHub users who have had any interaction at all with a specified repo.
-\item \textcolor{blue}{\small\bf\url{https://github.com/root-project/root}} seems like a logical choice of repo to define ``particle physicists.''
+\item \textcolor{blue}{\small\bf\url{https://github.com/root-project/root}} seems like a logical choice to define ``particle physicists.'' \textcolor{gray}{(Could also consider a set of repos.)}
 \item \textcolor{gray}{(We can get a list of 13\,069 root-forum users, but not their GitHub userids.)}
 \end{itemize}
 
 \vspace{0.2 cm}
 \uncover<2->{So: select GitHub users who interacted with the ROOT repo (``particle physicists'') and look at all of their non-fork repos. \textcolor{darkblue}{2\,824 people, 17\,414 repos over 6 years.}}
 
+\vspace{0.5 cm}
+\uncover<3->{Interestingly, only 143 are in both (3.9\% of CMSSW and 5.1\% of ROOT).}
 \end{frame}
 
 \begin{frame}{What they said in their profile bios}
