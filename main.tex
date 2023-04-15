@@ -39,6 +39,41 @@
 
 \usetikzlibrary{shapes.callouts}
 
+%% Thanks to https://github.com/gpoore/minted/issues/288
+\makeatletter
+%
+% Similar to \EscVerb.
+%
+% \EscMintinline[options]{<language>}{<backslash-escaped text>}
+%
+\def\EscMintinline{%
+  \FVExtraRobustCommand
+  \RobustEscMintinline
+  \FVExtraUnexpandedReadOArgMArgEscVArg}
+
+\NewExpandableDocumentCommand \FVExtraUnexpandedReadOArgMArgEscVArg { o m m } {%
+  \IfNoValueTF{#1}
+    {\FVExtraAlwaysUnexpanded
+      {\FVExtraUnexpandedReadOArgMArgEscVArg{#2}{#3}}}
+    {\FVExtraAlwaysUnexpanded
+      {\FVExtraUnexpandedReadOArgMArgEscVArg[#1]{#2}{#3}}}%
+}
+
+\newrobustcmd\RobustEscMintinline[2][]{%
+  % similar to \mintinline
+  \begingroup
+  \setboolean{minted@isinline}{true}%
+  \minted@configlang{#2}%
+  \setkeys{minted@opt@cmd}{#1}%
+  \minted@fvset
+  \begingroup
+  \@ifnextchar\bgroup
+    {\FVExtraDetokenizeREscVArg{\minted@inline@iii}}%
+    {\PackageError{minted}%
+     {\string\EscMintinline\space delimiters must be paired curly braces in this context}%
+     {Delimit argument with curly braces}}}
+\makeatother
+
 \begin{document}
 
 \logo{\pgfputat{\pgfxy(0.11, 7.4)}{\pgfbox[right,base]{\tikz{\filldraw[fill=dianablue, draw=none] (0 cm, 0 cm) rectangle (50 cm, 1 cm);}\mbox{\hspace{-8 cm}\includegraphics[height=1 cm]{princeton-logo-long.png}\hspace{0.1 cm}\raisebox{0.1 cm}{\includegraphics[height=0.8 cm]{iris-hep-logo-long.png}}\hspace{0.1 cm}}}}}
@@ -83,7 +118,7 @@
 
 \vspace{0.5 cm}
 \begin{itemize}
-\item<3-> Good software depends on mutual understanding (between developers and users) of what the software is for and how it's supposed to be used.
+\item<3-> Good software depends on mutual understanding (between developers and users) of what the software is for and what it can be expected to be able to do.
 \item<4-> The ``analysis'' step is the only one in the pipeline for which we don't even know \underline{\it who} all the users are.
 \end{itemize}
 \end{frame}
@@ -105,8 +140,8 @@
 {\bf Method} & {\bf Good} & {\bf Bad} \\\hline
 \uncover<2->{Bug-reports} & \uncover<2->{Resolve immediate needs.} & \uncover<2->{Only hear from proactive people.} \\
 \uncover<3->{Surveys} & \uncover<3->{Can directly ask people what they think. Quantitative.} & \uncover<3->{Are the people who didn't fill it out correlated with the questions?} \\
-\uncover<4->{Focus groups} & \uncover<4->{As above, but open to free-form, generating new ideas.} & \uncover<4->{Need to generalize from a small group to a large one.} \\
-\uncover<5->{Download stats} & \uncover<5->{People vote with their feet. Quantitative.} & \uncover<5->{Skewed by batch jobs. Very coarse-grained: only know package-level.} \\
+\uncover<4->{Focus groups} & \uncover<4->{As above, but open to free-form, generating new ideas.} & \uncover<4->{Need to follow up from the small group to a large survey.} \\
+\uncover<5->{Download stats} & \uncover<5->{People vote with their feet. Quantitative.} & \uncover<5->{Coarse-grained: only know package-level info. Skewed by batch jobs.} \\
 \uncover<6->{Textual analysis of CHEP/ACAT} & \uncover<6->{Long-view historical trends.} & \uncover<6->{Only for those who give talks, and what they choose to talk about.} \\
 \uncover<7->{Analysis of source code online} & \uncover<7->{Fine-grained, quantitative, average over many users.} & \uncover<7->{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?} \\
 \end{tabular}
@@ -177,6 +212,23 @@ A little more ``software,'' ``engineer,'' but still lots of ``physics,'' ``stude
 \end{center}
 
 \end{columns}
+\end{frame}
+
+\begin{frame}{What can we do once we have the repos?}
+\vspace{0.5 cm}
+Previously, I regex-searched them for ``\mintinline{python}{import XYZ}'' and ``\EscMintinline{c++}{\#include<XYZ>}''.
+
+\vspace{0.5 cm}
+\uncover<2->{For this talk, I wanted to go further and build ASTs/statically analyze all of the code.}
+
+\vspace{0.5 cm}
+\begin{uncoverenv}<3->
+I wasn't first to have this idea: see Chris Ostrouchov's \textcolor{blue}{\href{https://labs.quansight.org/blog/2019/05/python-package-function-usage}{Measuring API Usage}} (2019).
+
+\begin{center}
+\includegraphics[width=0.55\linewidth]{PLOTS/chris-ostrouchov.png}
+\end{center}
+\end{uncoverenv}
 \end{frame}
 
 
