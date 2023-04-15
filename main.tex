@@ -103,14 +103,76 @@
 \renewcommand{\arraystretch}{0.85}
 \begin{tabular}{p{3 cm} p{4.7 cm} p{5.7 cm}}
 {\bf Method} & {\bf Good} & {\bf Bad} \\\hline
-\uncover<1->{Bug-reports} & \uncover<1->{Resolve immediate needs.} & \uncover<1->{Only hear from proactive people.} \\
-\uncover<2->{Surveys} & \uncover<2->{Can directly ask people what they think. Quantitative.} & \uncover<2->{Are the people who didn't fill it out correlated with the questions?} \\
-\uncover<3->{Focus groups} & \uncover<3->{As above, but open to free-form response.} & \uncover<3->{Need to generalize from a small group to a large one.} \\
-\uncover<4->{Download stats} & \uncover<4->{People vote with their feet. Quantitative.} & \uncover<4->{Skewed by batch jobs. Very coarse-grained info: \underline{\it what} do people like?} \\
-\uncover<5->{Textual analysis of CHEP/ACAT} & \uncover<5->{Long-view historical trends.} & \uncover<5->{Only for those who give talks, and what they choose to talk about.} \\
-\uncover<6->{Analysis of source code online} & \uncover<6->{Fine-grained, many users, quantitative.} & \uncover<6->{Only public repos, have to identify demographics with some seed: how do you identify ``physicists''?} \\
+\uncover<2->{Bug-reports} & \uncover<2->{Resolve immediate needs.} & \uncover<2->{Only hear from proactive people.} \\
+\uncover<3->{Surveys} & \uncover<3->{Can directly ask people what people think. Quantitative.} & \uncover<3->{Are the people who didn't fill it out correlated with the questions?} \\
+\uncover<4->{Focus groups} & \uncover<4->{As above, but open to free-form, generating new ideas.} & \uncover<4->{Need to generalize from a small group to a large one.} \\
+\uncover<5->{Download stats} & \uncover<5->{People vote with their feet. Quantitative.} & \uncover<5->{Skewed by batch jobs. Very coarse-grained: only know package-level.} \\
+\uncover<6->{Textual analysis of CHEP/ACAT} & \uncover<6->{Long-view historical trends.} & \uncover<6->{Only for those who give talks, and what they choose to talk about.} \\
+\uncover<7->{Analysis of source code online} & \uncover<7->{Fine-grained, quantitative, average over many users.} & \uncover<7->{Only public repos, have to identify demographics with some seed: how do you identify ``physicists''?} \\
 \end{tabular}
 \end{columns}
 \end{frame}
+
+\begin{frame}{From previous talks}
+\vspace{0.5 cm}
+
+A few years ago, I stumbled upon a good technique:
+
+\vspace{0.2 cm}
+\begin{itemize}
+\item CMSSW has been on GitHub since 2013.
+\item Many CMS physicists have to fork CMSSW at some point.
+\item Very few non-physicists would fork CMSSW. \textcolor{gray}{($\sim$5 oddballs forked thousands\ldots)}
+\end{itemize}
+
+\vspace{0.2 cm}
+\uncover<2->{So the technique is: select GitHub users who forked CMSSW (``CMS physicists'') and look at all of their non-fork repos. \textcolor{darkblue}{3\,697 people, 22\,961 repos over 10 years.}}
+
+\vspace{1 cm}
+\uncover<3->{\textcolor{darkblue}{But what about experiments other than CMS?}}
+\end{frame}
+
+\begin{frame}{A complementary dataset}
+\begin{itemize}
+\item GitHub Archive (\textcolor{blue}{\small\bf\url{https://www.gharchive.org/}}) has been collecting all fork, PR, issue, wiki, watch, and comment events since 2017. We can get a list of GitHub users who have had any interaction at all with a specified repo.
+\item \textcolor{blue}{\small\bf\url{https://github.com/root-project/root}} seems like a logical choice of repo to define ``particle physicists.''
+\item \textcolor{gray}{(We can get a list of 13\,069 root-forum users, but not their GitHub userids.)}
+\end{itemize}
+
+\vspace{0.2 cm}
+\uncover<2->{So: select GitHub users who interacted with the ROOT repo (``particle physicists'') and look at all of their non-fork repos. \textcolor{darkblue}{2\,824 people, 17\,414 repos over 6 years.}}
+
+\end{frame}
+
+\begin{frame}{What they said in their profile bios}
+\vspace{0.5 cm}
+\begin{columns}
+\column{0.55\linewidth}
+\mbox{ } \hfill \textcolor{darkblue}{\large Selected by CMSSW fork} \hfill \mbox{ }
+
+\vspace{0.2 cm}
+\includegraphics[width=\linewidth]{PLOTS/cmssw-profile-bios-wordcloud.pdf}
+
+\begin{center}
+\begin{minipage}{0.9\linewidth}
+A lot of ``physics,'' ``student,'' ``particle,'' ``physicist,'' ``PhD,'' ``CERN,'' and ``CMS.''
+\end{minipage}
+\end{center}
+
+\column{0.55\linewidth}
+\mbox{ } \hfill \textcolor{darkblue}{\large Selected by ROOT interaction} \hfill \mbox{ }
+
+\vspace{0.2 cm}
+\includegraphics[width=\linewidth]{PLOTS/root-repo-profile-bios-wordcloud.pdf}
+
+\begin{center}
+\begin{minipage}{0.95\linewidth}
+A little more ``software,'' ``engineer,'' but still lots of ``physics,'' ``student,'' and ``PhD.''
+\end{minipage}
+\end{center}
+
+\end{columns}
+\end{frame}
+
 
 \end{document}
