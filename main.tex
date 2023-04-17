@@ -249,19 +249,71 @@ I wasn't first to have this idea: see Chris Ostrouchov's \textcolor{blue}{\href{
 \end{uncoverenv}
 \end{frame}
 
-\begin{frame}{But first, reproducing language study (filename suffixes)}
+\begin{frame}{But first, reproducing the previous studies}
+\vspace{0.5 cm}
+
+Note that the data have changed: more GitHub users have forked CMSSW since the last time we looked, which adds even their past history to the plot, and the date of a repo is set by the latest file, which causes them to migrate bins (forward in time).
+
 \begin{columns}
-\column{1.1\linewidth}
-\only<1>{\includegraphics[width=\linewidth]{analysis/github-language-cmsswseed.pdf}}\only<2>{\includegraphics[width=\linewidth]{analysis/github-language-rootseed.pdf}}
+\column{0.6\linewidth}
+\hspace{-0.45 cm}\includegraphics[width=1.05\linewidth]{analysis/github-language-cmsswseed.pdf}
+
+\column{0.6\linewidth}
+\hspace{-0.75 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-cmsswseed.pdf}
+\end{columns}
+
+\begin{columns}
+\column{0.5\linewidth}
+
+\small
+\uncover<2->{Conclusion is the same: C++ and CMSSW config (Python with \mintinline{python}{import FWCore}) are flat, while Python and Jupyter (Python) increase.}
+
+\column{0.5\linewidth}
+
+\small
+\uncover<3->{Conclusion is the same: ROOT-C++ usage is flat while ROOT-Python and especially NumPy, Matplotlib, Pandas are increasing. Uproot usage $\sim$ TensorFlow.}
+
 \end{columns}
 \end{frame}
 
-\begin{frame}{But first, reproducing package import study (regex searches)}
+\begin{frame}{Better represented as fractions: \#matching repos/\#total repos}
 \begin{columns}
-\column{1.1\linewidth}
-\only<1>{\includegraphics[width=\linewidth]{analysis/github-package-cmsswseed.pdf}}\only<2>{\includegraphics[width=\linewidth]{analysis/github-package-rootseed.pdf}}
+\column{0.6\linewidth}
+\hspace{-0.45 cm}\includegraphics[width=1.05\linewidth]{analysis/github-language-cmsswseed-fraction.pdf}
+
+\column{0.6\linewidth}
+\hspace{-0.75 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-cmsswseed-fraction.pdf}
 \end{columns}
+
+\vspace{-0.15 cm}
+\begin{columns}
+\column{0.6\linewidth}
+\hspace{-0.45 cm}\includegraphics[width=1.05\linewidth]{analysis/github-language-rootseed-fraction.pdf}
+
+\column{0.6\linewidth}
+\hspace{-0.75 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-rootseed-fraction.pdf}
+\end{columns}
+
+\begin{uncoverenv}<2->
+\vspace{-6.8 cm}
+\mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.5\linewidth}
+Some of the growth was in the denominator: the total number of repos is increasing while Python use also increases.
+\end{minipage}} \hfill \mbox{ }
+\vspace{6.8 cm}
+\end{uncoverenv}
+
+\begin{uncoverenv}<3->
+\vspace{-4.6 cm}
+\mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.6\linewidth}
+Among users identified by ROOT interactions, Python use has always been high (since 2017).
+
+\vspace{0.2 cm}
+Might be including too many non-particle physicists.
+\end{minipage}} \hfill \mbox{ }
+\vspace{4.6 cm}
+\end{uncoverenv}
 \end{frame}
+
 
 
 \end{document}
