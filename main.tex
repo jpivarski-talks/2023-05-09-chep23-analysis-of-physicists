@@ -143,7 +143,7 @@
 \uncover<4->{Focus groups} & \uncover<4->{As above, but open to free-form, generating new ideas.} & \uncover<4->{Need to follow up from the small group to a large survey.} \\
 \uncover<5->{Download stats} & \uncover<5->{People vote with their feet. Quantitative.} & \uncover<5->{Coarse-grained: only know package-level info. Skewed by batch jobs.} \\
 \uncover<6->{Textual analysis of CHEP/ACAT} & \uncover<6->{Long-view historical trends.} & \uncover<6->{Only for those who give talks, and what they choose to talk about.} \\
-\uncover<7->{Analysis of source code online} & \uncover<7->{Fine-grained, quantitative, average over many users.} & \uncover<7->{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?} \\
+\uncover<7->{\only<1-7>{Analysis of source code online}\only<8>{\textcolor{violet}{Analysis of source code online}}} & \uncover<7->{\only<1-7>{Fine-grained, quantitative, average over many users.}\only<8>{\textcolor{violet}{Fine-grained, quantitative, average over many users.}}} & \uncover<7->{\only<1-7>{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?}\only<8>{\textcolor{violet}{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?}}} \\
 \end{tabular}
 \end{columns}
 \end{frame}
@@ -159,7 +159,7 @@ Relative rates, such as new version adoption.
 
 \begin{frame}{What textual analysis of CHEP/ACAT is good for (one slide)}
 \vspace{0.35 cm}
-Discovering trends and changing interests.
+Discovering trends and changing interests. (``How buzzy is X compared to OOP?'')
 
 \begin{center}
 \includegraphics[width=0.9\linewidth]{PLOTS/chep-papers-paradigm.pdf}
@@ -175,7 +175,7 @@ A few years ago (2019), I stumbled upon a good technique:
 \begin{itemize}
 \item CMSSW has been on GitHub since 2013.
 \item Many CMS physicists have to fork CMSSW at some point.
-\item Very few non-physicists would fork CMSSW. \textcolor{gray}{($\sim$5 oddballs forked thousands\ldots)}
+\item Very few non-physicists would fork CMSSW.
 \end{itemize}
 
 \vspace{0.2 cm}
@@ -186,12 +186,13 @@ A few years ago (2019), I stumbled upon a good technique:
 \end{frame}
 
 \begin{frame}{A complementary dataset}
-\vspace{0.7 cm}
+\vspace{0.5 cm}
 \vspace{\baselineskip}
 
 \begin{itemize}
 \item GitHub Archive (\textcolor{blue}{\small\bf\url{https://www.gharchive.org/}}) has been collecting all fork, PR, issue, wiki, watch, and comment events since 2017. We can get a list of GitHub users who have had any interaction at all with a specified repo.
-\item \textcolor{blue}{\small\bf\url{https://github.com/root-project/root}} seems like a logical choice to define ``particle physicists.'' \textcolor{gray}{(Could also consider a set of repos.)}
+\item \textcolor{blue}{\small\bf\url{https://github.com/root-project/root}} seems like a logical choice to define ``particle physicists.''
+\item \textcolor{gray}{(Could also consider a set of repos.)}
 \item \textcolor{gray}{(We can get a list of 13\,069 root-forum users, but not their GitHub userids.)}
 \end{itemize}
 
@@ -252,7 +253,7 @@ I wasn't first to have this idea: see Chris Ostrouchov's \textcolor{blue}{\href{
 \begin{frame}{But first, reproducing the previous studies}
 \vspace{0.5 cm}
 
-Note that the data have changed: more GitHub users have forked CMSSW since the last time we looked, which adds even their past history to the plot, and the date of a repo is set by the latest file, which causes them to migrate bins (forward in time).
+\textcolor{gray}{Note that the data have changed: more GitHub users have forked CMSSW since the last time we looked, which adds even their past history to the plot, and the date of a repo is set by the latest file, which causes them to migrate bins (forward in time).}
 
 \begin{columns}
 \column{0.6\linewidth}
@@ -304,15 +305,53 @@ Some of the growth was in the denominator: the total number of repos is increasi
 
 \begin{uncoverenv}<3->
 \vspace{-4.6 cm}
-\mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.6\linewidth}
-Among users identified by ROOT interactions, Python use has always been high (since 2017).
-
-\vspace{0.2 cm}
-Might be including too many non-particle physicists.
+\mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.5\linewidth}
+Similar conclusion from the ROOT-selected group, though the selection criteria starts at 2017, halway through the trend.
 \end{minipage}} \hfill \mbox{ }
 \vspace{4.6 cm}
 \end{uncoverenv}
 \end{frame}
+
+\begin{frame}{Can we select physicists using their profile bios?}
+\vspace{0.15 cm}
+\small
+\begin{columns}
+\column{1.07\linewidth}
+Regex \mintinline{python}{(phys|analy|hep|particle|cern|cms|atlas|alice|lhc)} selects \textcolor{darkblue}{7.6\% of users}.
+\end{columns}
+
+\vspace{-0.1 cm}
+\begin{columns}
+\column{0.6\linewidth}
+\hspace{-0.45 cm}\includegraphics[width=1.05\linewidth]{analysis/github-language-cmsswseed-tight-fraction.pdf}
+
+\column{0.6\linewidth}
+\hspace{-0.75 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-cmsswseed-tight-fraction.pdf}
+\end{columns}
+
+\vspace{-0.45 cm}
+\begin{columns}
+\column{0.6\linewidth}
+\hspace{-0.45 cm}\includegraphics[width=1.05\linewidth]{analysis/github-language-rootseed-tight-fraction.pdf}
+
+\column{0.6\linewidth}
+\hspace{-0.75 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-rootseed-tight-fraction.pdf}
+\end{columns}
+
+\begin{uncoverenv}<2->
+\vspace{-5 cm}
+\mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.5\linewidth}
+Same trends/conclusions.
+
+\vspace{0.2 cm}
+(The data are smoother because it's binned annually now; we lose an order of magnitude from the user-bio cut.)
+\end{minipage}} \hfill \mbox{ }
+\vspace{5 cm}
+\end{uncoverenv}
+
+
+\end{frame}
+
 
 
 
