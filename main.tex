@@ -470,7 +470,46 @@ The deprecation period has to be {\it long}.
 \end{minipage}} \hfill \mbox{ }
 \vspace{6 cm}
 \end{uncoverenv}
+\end{frame}
 
+\begin{frame}[fragile]{Focus on Uproot's array-fetching functions}
+\vspace{0.5 cm}
+How do people use the \mintinline{python}{library="??"} argument?
+
+\begin{columns}
+\column{0.5\linewidth}
+\mbox{\hspace{0.75 cm}\includegraphics[width=\linewidth]{analysis/github-ast-uproot-array-function-library-argument.pdf}}
+
+\vspace{0.5 cm}
+\mbox{\hspace{1 cm}\begin{minipage}{0.85\linewidth}
+When it's used, it's much more often used for NumPy than for Pandas.
+\end{minipage}}
+
+\column{0.7\linewidth}
+\scriptsize
+\begin{minted}{python}
+if isinstance(tree, ast.Call):
+    name = ast.unparse(tree.func)
+    if (   # select Uproot functions only
+        (name.endswith(".array") and name not in (
+            "np.array", "np.ma.array", "numpy.array",
+            "NUMPY_LIB.array", "array.array",
+            "self.NUMPY_LIB.array", "cupy.array",
+        ))
+        or name.endswith(".arrays")
+        or name.endswith(".iterate")
+        or (name.endswith(".concatenate") and name not in (
+            "np.concatenate", "ak.concatenate",
+            "awk.concatenate", "awkward.concatenate",
+            "awkward.JaggedArray.concatenate",
+            "JaggedArray.concatenate",
+            "tf.concatenate",
+        ))
+        or name.endswith(".dask")
+    ):
+        matches.append(tree)
+\end{minted}
+\end{columns}
 \end{frame}
 
 \end{document}
