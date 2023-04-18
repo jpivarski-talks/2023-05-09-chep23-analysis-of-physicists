@@ -297,16 +297,16 @@ I wasn't first to have this idea: see Chris Ostrouchov's \textcolor{blue}{\href{
 
 \begin{uncoverenv}<3->
 \vspace{-6.8 cm}
-\mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.5\linewidth}
-Some of the growth was in the denominator: the total number of repos is increasing while Python use also increases.
+\mbox{ } \hfill \fcolorbox{darkblue}{white}{\begin{minipage}{0.5\linewidth}
+\textcolor{darkblue}{Some of the growth was in the denominator: the total number of repos is increasing while Python use also increases.}
 \end{minipage}} \hfill \mbox{ }
 \vspace{6.8 cm}
 \end{uncoverenv}
 
 \begin{uncoverenv}<4->
 \vspace{-4.6 cm}
-\mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.5\linewidth}
-In the ROOT-selected group, Python use has always been higher, though the profile bios indicated more engineers and computer scientists.
+\mbox{ } \hfill \fcolorbox{darkblue}{white}{\begin{minipage}{0.5\linewidth}
+\textcolor{darkblue}{In the ROOT-selected group, Python use has always been higher, though the profile bios indicated more engineers and computer scientists.}
 \end{minipage}} \hfill \mbox{ }
 \vspace{4.6 cm}
 \end{uncoverenv}
@@ -339,8 +339,8 @@ Regex \mintinline{python}{(phys|analy|hep|particle|cern|cms|atlas|alice|lhc)} se
 
 \begin{uncoverenv}<2->
 \vspace{-4.3 cm}
-\mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.5\linewidth}
-Although selecting a pure sample of physicists cuts more than 90\% of the data, the same trends are still visible.
+\mbox{ } \hfill \fcolorbox{darkblue}{white}{\begin{minipage}{0.5\linewidth}
+\textcolor{darkblue}{Although selecting a pure sample of physicists cuts more than 90\% of the data, the same trends are still visible.}
 \end{minipage}} \hfill \mbox{ }
 \vspace{4.3 cm}
 \end{uncoverenv}
@@ -384,6 +384,75 @@ def is_awkward0(obj):
 \end{minipage}
 \end{columns}
 \end{frame}
+
+\begin{frame}[fragile]{Most common function calls/argument patterns}
+\vspace{0.25 cm}
+\small
+\begin{columns}
+\column{0.45\linewidth}
+\mbox{\hspace{1.35 cm}{\large\bf Awkward Array}}
+
+\vspace{0.05 cm}
+\begin{tabular}{r l}
+2832 & \verb|ak.flatten(?)| \\
+2498 & \verb|ak.num(?)| \\
+2193 & \verb|ak.to_numpy(?)| \\
+ 874 & \verb|ak.sum(?, axis=1)| \\
+ 865 & \verb|ak.flatten(?, axis=None)| \\
+ 564 & \verb|ak.sum(?)| \\
+ 455 & \verb|ak.ones_like(?)| \\
+ 406 & \verb|ak.Array(?)| \\
+ 283 & \verb|ak.concatenate(?)| \\
+ 265 & \verb|ak.singletons(?)| \\
+ 248 & \verb|ak.num(?, axis=1)| \\
+ 246 & \verb|ak.concatenate(?, axis=1)| \\
+ 235 & \verb|ak.any(?, axis=1)| \\
+ 234 & \verb|ak.zip(?, with_name='str')| \\
+ 233 & \verb|ak.to_pandas(?)| \\
+ 226 & \verb|ak.unzip(?)| \\
+ 221 & \verb|ak.firsts(?)| \\
+\end{tabular}
+
+\column{0.65\linewidth}
+\mbox{\hspace{1.35 cm}{\large\bf Uproot}}
+
+\vspace{0.05 cm}
+\begin{tabular}{r l}
+2150 & \verb|uproot.open(?)| \\
+ 889 & \verb|uproot.open('str')| \\
+ 198 & \verb|uproot.recreate(?)| \\
+ 179 & \verb|uproot.tree.TBranchMethods.array(?)| \\
+  74 & \verb|uproot.lazy(?)| \\
+  58 & \verb|uproot.newtree(?)| \\
+  57 & \verb|uproot.pandas.iterate(?, 'str', ['strings'])| \\
+  44 & \verb|uproot.open(?, xrootdsource=?)| \\
+  23 & \verb|uproot.lazy(?, filter_name=?)| \\
+  22 & \verb|uproot.recreate('str')| \\
+  18 & \verb|uproot.create(?)| \\
+  15 & \verb|uproot.recreate(?, compression=?)| \\
+  13 & \verb|uproot.newbranch(?, size='str')| \\
+  11 & \verb|uproot.numentries(?, ?)| \\
+  11 & \verb|uproot.ArrayCache('str')| \\
+  10 & \verb|uproot.numentries(?, ?, total=False)| \\
+  10 & \verb|uproot.numentries(?, ?, executor=?, total=False)| \\
+\end{tabular}
+\end{columns}
+
+\vspace{-5 cm}
+\begin{uncoverenv}<2->
+\begin{columns}
+\column{1.2\linewidth}
+\hspace{8.3 cm}\fcolorbox{darkblue}{white}{\begin{minipage}{0.4\linewidth}
+\textcolor{darkblue}{Uproot relies more on object methods. We'd have to statically analyze {\it object types}, not functions on global modules, which is hard in a dynamically typed language.}
+\end{minipage}}
+\end{columns}
+\end{uncoverenv}
+\vspace{5 cm}
+\end{frame}
+
+
+
+
 
 \end{document}
 
