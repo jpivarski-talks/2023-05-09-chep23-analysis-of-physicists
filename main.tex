@@ -256,11 +256,11 @@ I wasn't first to have this idea: see Chris Ostrouchov's \textcolor{blue}{\href{
 \textcolor{gray}{Note that the data have changed: more GitHub users have forked CMSSW since the last time we looked, which adds even their past history to the plot, and the date of a repo is set by the latest file, which causes them to migrate bins (forward in time).}
 
 \begin{columns}
-\column{0.6\linewidth}
-\hspace{-0.45 cm}\includegraphics[width=1.05\linewidth]{analysis/github-language-cmsswseed.pdf}
+\column{0.58\linewidth}
+\hspace{-0.4 cm}\includegraphics[width=1.05\linewidth]{analysis/github-language-cmsswseed.pdf}
 
-\column{0.6\linewidth}
-\hspace{-0.75 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-cmsswseed.pdf}
+\column{0.58\linewidth}
+\hspace{-0.45 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-cmsswseed.pdf}
 \end{columns}
 
 \begin{columns}
@@ -286,16 +286,16 @@ I wasn't first to have this idea: see Chris Ostrouchov's \textcolor{blue}{\href{
 \hspace{-0.75 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-cmsswseed-fraction.pdf}
 \end{columns}
 
-\vspace{-0.15 cm}
+\vspace{-0.08 cm}
 \begin{columns}
 \column{0.6\linewidth}
-\hspace{-0.45 cm}\includegraphics[width=1.05\linewidth]{analysis/github-language-rootseed-fraction.pdf}
+\uncover<2->{\hspace{-0.45 cm}\includegraphics[width=1.05\linewidth]{analysis/github-language-rootseed-fraction.pdf}}
 
 \column{0.6\linewidth}
-\hspace{-0.75 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-rootseed-fraction.pdf}
+\uncover<2->{\hspace{-0.75 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-rootseed-fraction.pdf}}
 \end{columns}
 
-\begin{uncoverenv}<2->
+\begin{uncoverenv}<3->
 \vspace{-6.8 cm}
 \mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.5\linewidth}
 Some of the growth was in the denominator: the total number of repos is increasing while Python use also increases.
@@ -303,7 +303,7 @@ Some of the growth was in the denominator: the total number of repos is increasi
 \vspace{6.8 cm}
 \end{uncoverenv}
 
-\begin{uncoverenv}<3->
+\begin{uncoverenv}<4->
 \vspace{-4.6 cm}
 \mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.5\linewidth}
 Similar conclusion from the ROOT-selected group, though the selection criteria starts at 2017, halway through the trend.
@@ -320,44 +320,40 @@ Similar conclusion from the ROOT-selected group, though the selection criteria s
 Regex \mintinline{python}{(phys|analy|hep|particle|cern|cms|atlas|alice|lhc)} selects \textcolor{darkblue}{7.6\% of users}.
 \end{columns}
 
-\vspace{-0.1 cm}
 \begin{columns}
-\column{0.6\linewidth}
-\hspace{-0.45 cm}\includegraphics[width=1.05\linewidth]{analysis/github-language-cmsswseed-tight-fraction.pdf}
+\column{0.58\linewidth}
+\includegraphics[width=\linewidth]{analysis/github-language-cmsswseed-tight-fraction.pdf}
 
-\column{0.6\linewidth}
-\hspace{-0.75 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-cmsswseed-tight-fraction.pdf}
+\column{0.58\linewidth}
+\hspace{-0.25 cm}\includegraphics[width=\linewidth]{analysis/github-package-cmsswseed-tight-fraction.pdf}
 \end{columns}
 
-\vspace{-0.45 cm}
+\vspace{-0.25 cm}
 \begin{columns}
-\column{0.6\linewidth}
-\hspace{-0.45 cm}\includegraphics[width=1.05\linewidth]{analysis/github-language-rootseed-tight-fraction.pdf}
+\column{0.58\linewidth}
+\includegraphics[width=\linewidth]{analysis/github-language-rootseed-tight-fraction.pdf}
 
-\column{0.6\linewidth}
-\hspace{-0.75 cm}\includegraphics[width=1.05\linewidth]{analysis/github-package-rootseed-tight-fraction.pdf}
+\column{0.58\linewidth}
+\hspace{-0.25 cm}\includegraphics[width=\linewidth]{analysis/github-package-rootseed-tight-fraction.pdf}
 \end{columns}
 
 \begin{uncoverenv}<2->
-\vspace{-5 cm}
+\vspace{-4.3 cm}
 \mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.5\linewidth}
-Same trends/conclusions.
-
-\vspace{0.2 cm}
-(The data are smoother because it's binned annually now; we lose an order of magnitude from the user-bio cut.)
+Although selecting a pure sample of physicists cuts more than 90\% of the data, the same trends are still visible.
 \end{minipage}} \hfill \mbox{ }
-\vspace{5 cm}
+\vspace{4.3 cm}
 \end{uncoverenv}
 \end{frame}
 
-\begin{frame}{Now actually parse the repos: Python 2 versus Python 3}
+\begin{frame}{Now actually parse the repos: Python 3 adoption among physicists}
 \begin{columns}
 \column{1.15\linewidth}
 \includegraphics[width=\linewidth]{analysis/github-python-2-3-fraction.pdf}
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Ask specific questions: how did Awkward version 0 $\to$ 1 go?}
+\begin{frame}[fragile]{Ask specific questions: Awkward 1 adoption by function name}
 \vspace{0.15 cm}
 \begin{columns}
 \column{0.7\linewidth}
