@@ -118,8 +118,7 @@
 
 \vspace{0.5 cm}
 \begin{itemize}
-\item<3-> Good software depends on mutual understanding (between developers and users) of what the software is for and what it can be expected to be able to do.
-\item<4-> The ``analysis'' step is the only one in the pipeline for which we don't even know \underline{\it who} all the users are.
+\item<3-> The ``analysis'' step is the only one in the pipeline for which we don't even know \underline{\it who} all the users are.
 \end{itemize}
 \end{frame}
 
@@ -143,7 +142,7 @@
 \uncover<4->{Focus groups} & \uncover<4->{As above, but open to free-form, generating new ideas.} & \uncover<4->{Need to follow up from the small group to a large survey.} \\
 \uncover<5->{Download stats} & \uncover<5->{People vote with their feet. Quantitative.} & \uncover<5->{Coarse-grained: only know package-level info. Skewed by batch jobs.} \\
 \uncover<6->{Textual analysis of CHEP/ACAT} & \uncover<6->{Long-view historical trends.} & \uncover<6->{Only for those who give talks, and what they choose to talk about.} \\
-\uncover<7->{\only<1-7>{Analysis of source code online}\only<8>{\textcolor{violet}{Analysis of source code online}}} & \uncover<7->{\only<1-7>{Fine-grained, quantitative, average over many users.}\only<8>{\textcolor{violet}{Fine-grained, quantitative, average over many users.}}} & \uncover<7->{\only<1-7>{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?}\only<8>{\textcolor{violet}{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?}}} \\
+\uncover<7->{\only<1-7>{Analysis of source code online}\only<8>{\textcolor{darkgreen}{Analysis of source code online}}} & \uncover<7->{\only<1-7>{Fine-grained, quantitative, average over many users.}\only<8>{\textcolor{darkgreen}{Fine-grained, quantitative, average over many users.}}} & \uncover<7->{\only<1-7>{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?}\only<8>{\textcolor{darkgreen}{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?}}} \\
 \end{tabular}
 \end{columns}
 \end{frame}
@@ -272,7 +271,7 @@ I wasn't first to have this idea: see Chris Ostrouchov's \textcolor{blue}{\href{
 \column{0.5\linewidth}
 
 \small
-\uncover<3->{Conclusion is the same: ROOT-C++ usage is flat while PyROOT and especially NumPy, Matplotlib, Pandas, TensorFlow are increasing. \uncover<4->{Uproot/Awkward usage $\sim$ TensorFlow usage.}}
+\uncover<3->{Conclusion is the same: ROOT-C++ usage is flat while PyROOT and especially NumPy, Matplotlib, Pandas, TensorFlow are increasing. \uncover<4->{\textcolor{darkorange}{Uproot/Awkward usage $\sim$ TensorFlow usage.}}}
 
 \end{columns}
 \end{frame}
@@ -312,7 +311,7 @@ I wasn't first to have this idea: see Chris Ostrouchov's \textcolor{blue}{\href{
 \end{uncoverenv}
 \end{frame}
 
-\begin{frame}{Can we select physicists using their profile bios?}
+\begin{frame}{Narrow in on physicists, selecting by their profile bios}
 \vspace{0.15 cm}
 \small
 \begin{columns}
@@ -347,6 +346,7 @@ Regex \mintinline{python}{(phys|analy|hep|particle|cern|cms|atlas|alice|lhc)} se
 \end{frame}
 
 \begin{frame}{Now actually parse the repos: Python 3 adoption among physicists}
+\vspace{0.5 cm}
 \begin{columns}
 \column{1.15\linewidth}
 \includegraphics[width=\linewidth]{analysis/github-python-2-3-fraction.pdf}
@@ -386,7 +386,7 @@ def is_awkward0(obj):
 \end{frame}
 
 \begin{frame}[fragile]{Most common function calls/argument patterns}
-\vspace{0.25 cm}
+\vspace{0.3 cm}
 \small
 \begin{columns}
 \column{0.45\linewidth}
@@ -448,27 +448,67 @@ def is_awkward0(obj):
 \end{columns}
 \end{uncoverenv}
 \vspace{5 cm}
+
+\vspace{-10.05 cm}
+\begin{uncoverenv}<3->
+\begin{columns}
+\column{1.2\linewidth}
+\hspace{7.1 cm}\fcolorbox{darkblue}{white}{\begin{minipage}{0.5\linewidth}
+\textcolor{darkblue}{Compare to web traffic on awkward-array.org\ldots}
+
+\vspace{0.1 cm}
+\begin{tabular}{l r r r r}
+function & \hspace{-1 cm}\#unique visitors & \#views & avg.\ time \\\hline
+ak.Array & 785 & 1100 & 3m33s \\
+ak.concatenate & 223 & 293 & 4m35s \\
+ak.count & 210 & 265 & 4m20s \\
+ak.flatten & 203 & 242 & 4m23s \\
+ak.where & 202 & 262 & 3m54s \\
+ak.num & 184 & 235 & 3m07s \\
+ak.to\_numpy & 181 & 218 & 3m25s \\
+ak.mask & 178 & 231 & 3m52s \\
+ak.zip & 163 & 221 & 5m02s \\
+ak.fill\_none & 162 & 214 & 3m11s \\
+ak.broadcast\_arrays & 156 & 210 & 4m20s \\
+ak.combinations & 136 & 171 & 3m58s \\
+ak.sum & 136 & 165 & 4m42s \\
+ak.behavior & 125 & 152 & 6m25s \\
+ak.ArrayBuilder & 124 & 161 & 3m02s \\
+ak.cartesian & 121 & 159 & 3m09s \\
+ak.pad\_none & 114 & 146 & 3m00s \\
+\end{tabular}
+\end{minipage}}
+\end{columns}
+\end{uncoverenv}
+\vspace{10.05 cm}
 \end{frame}
 
 \begin{frame}{Use feature adoption to make decisions about deprecation}
-\vspace{0.75 cm}
+\vspace{0.5 cm}
+The colon in \mintinline{python}{uproot.open("file.root:dir/tree")} causes many problems:
+
+\vspace{0.25 cm}
 \begin{columns}
 \column{1.1\linewidth}
 \includegraphics[width=\linewidth]{PLOTS/uproot-open-colon-issues.png}
 \end{columns}
 
 \begin{uncoverenv}<2->
-\vspace{-6 cm}
-\mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.65\linewidth}
+\vspace{-6.5 cm}
+\mbox{ } \hfill \fcolorbox{black}{white}{\begin{minipage}{0.7\linewidth}
 \includegraphics[width=\linewidth]{analysis/github-ast-uproot-filename-colon.pdf}
 
-\mbox{ } \hfill \begin{minipage}{0.75\linewidth}
-Removing it would upset many workflows.
+\mbox{ } \hfill \begin{minipage}{0.9\linewidth}
+\vspace{0.1 cm}
+But removing it would upset at least 10\% of workflows.
 
-The deprecation period has to be {\it long}.
+\vspace{0.1 cm}
+The deprecation period has to be {\it long}, if it is to be removed at all.
+
+\vspace{0.1 cm}
 \end{minipage} \hfill \mbox{ }
 \end{minipage}} \hfill \mbox{ }
-\vspace{6 cm}
+\vspace{6.5 cm}
 \end{uncoverenv}
 \end{frame}
 
@@ -510,6 +550,135 @@ if isinstance(tree, ast.Call):
         matches.append(tree)
 \end{minted}
 \end{columns}
+\end{frame}
+
+\begin{frame}{What libraries are Awkward and Uproot used {\it with}?}
+\vspace{0.35 cm}
+\small
+\begin{columns}
+\column{0.45\linewidth}
+\mbox{\hspace{1.35 cm}{\large\bf Awkward Array}}
+
+\vspace{0.05 cm}
+\begin{columns}
+\column{0.5\linewidth}
+\begin{tabular}{r l}
+90.5\% & numpy \\
+56.9\% & uproot \\
+49.8\% & matplotlib \\
+35.6\% & coffea \\
+31.2\% & pandas \\
+20.4\% & mplhep \\
+11.9\% & ROOT \\
+11.8\% & numba \\
+8.8\% & hist \\
+8.4\% & uproot\_methods \\
+8.2\% & yaml \\
+7.4\% & utils \\
+6.7\% & tqdm \\
+5.8\% & boost\_histogram \\
+5.0\% & tensorflow \\
+4.8\% & scipy \\
+4.3\% & vector \\
+\end{tabular}
+\column{0.5\linewidth}
+\begin{tabular}{r l}
+4.2\% & torch \\
+3.7\% & seaborn \\
+3.6\% & yahist \\
+3.2\% & xgboost \\
+2.9\% & sklearn \\
+2.9\% & h5py \\
+2.6\% & memory\_profiler \\
+2.3\% & pympler \\
+2.1\% & psutil \\
+1.9\% & correctionlib \\
+1.8\% & sortedcontainers \\
+1.7\% & cycler \\
+1.7\% & networkx \\
+1.5\% & pylab \\
+1.5\% & PIL \\
+1.4\% & helpers \\
+1.4\% & tabulate \\
+\end{tabular}
+\end{columns}
+
+\column{0.025\linewidth}
+\column{0.45\linewidth}
+\mbox{\hspace{1.35 cm}{\large\bf Uproot}}
+
+\vspace{0.05 cm}
+\begin{columns}
+\column{0.5\linewidth}
+\begin{tabular}{r l}
+88.5\% & numpy \\
+59.4\% & matplotlib \\
+46.5\% & pandas \\
+31.7\% & awkward \\
+23.6\% & ROOT \\
+14.0\% & coffea \\
+13.8\% & mplhep \\
+11.0\% & tqdm \\
+9.4\% & tensorflow \\
+8.2\% & scipy \\
+7.0\% & sklearn \\
+6.2\% & uproot\_methods \\
+6.0\% & xgboost \\
+5.8\% & yaml \\
+5.8\% & numba \\
+5.1\% & utils \\
+4.5\% & root\_numpy \\
+\end{tabular}
+\column{0.5\linewidth}
+\begin{tabular}{r l}
+3.9\% & seaborn \\
+3.9\% & hist \\
+3.9\% & boost\_histogram \\
+3.5\% & keras \\
+3.5\% & CMS\_lumi \\
+3.1\% & histo\_utilities \\
+3.1\% & analysis\_utilities \\
+2.9\% & torch \\
+2.8\% & h5py \\
+2.8\% & progressBar \\
+2.3\% & cebefo\_style \\
+2.1\% & lumi\_utilities \\
+1.9\% & yahist \\
+1.8\% & common \\
+1.8\% & config \\
+1.8\% & root\_pandas \\
+1.6\% & psutil \\
+\end{tabular}
+\end{columns}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conclusions}
+\vspace{0.35 cm}
+\large
+\begin{itemize}\setlength{\itemsep}{0.25 cm}
+\item<1-> A lot of physics analysis code is public on GitHub and GitLab.
+\item<2-> We can find it by crawling the network, seeded by a package that is well-known in the community, such as CMSSW or ROOT.
+\item<3-> Studying tens of thousands of git repos is a modest data analysis (TB scale).\hspace{-1 cm}
+\begin{itemize}\setlength{\itemsep}{0.1 cm}
+\item \textcolor{gray}{Dask was very helpful!}
+\end{itemize}
+\item<4-> We can learn things that are useful for software library maintenance:
+\begin{itemize}\setlength{\itemsep}{0.1 cm}
+\item user adoption of new versions
+\item most common function-call patterns
+\item decide if and when a feature can be deprecated
+\item discover which libraries are being used together, maybe motivate integrations
+\end{itemize}
+\item<5->{It's hard to identify class method calls in a dynamically typed language!}
+\end{itemize}
+
+\vspace{0.25 cm}
+\uncover<6->{How to get my analysis code (source data are in public S3 buckets):}
+
+\vspace{0.1 cm}
+\scriptsize
+\uncover<6->{\textcolor{blue}{\bf\url{https://github.com/jpivarski-talks/2023-05-09-chep23-analysis-of-physicists}}}
 \end{frame}
 
 \end{document}
