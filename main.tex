@@ -141,8 +141,8 @@
 \uncover<3->{Surveys} & \uncover<3->{Can directly ask people what they think. Quantitative.} & \uncover<3->{Are the people who didn't fill it out correlated with the questions?} \\
 \uncover<4->{Focus groups} & \uncover<4->{As above, but open to free-form, generating new ideas.} & \uncover<4->{Need to follow up from the small group to a large survey.} \\
 \uncover<5->{Download stats} & \uncover<5->{People vote with their feet. Quantitative.} & \uncover<5->{Coarse-grained: only know package-level info. Skewed by batch jobs.} \\
-\uncover<6->{Textual analysis of CHEP/ACAT} & \uncover<6->{Long-view historical trends.} & \uncover<6->{Only for those who give talks, and what they choose to talk about.} \\
-\uncover<7->{\only<1-7>{Analysis of source code online}\only<8>{\textcolor{darkgreen}{Analysis of source code online}}} & \uncover<7->{\only<1-7>{Fine-grained, quantitative, average over many users.}\only<8>{\textcolor{darkgreen}{Fine-grained, quantitative, average over many users.}}} & \uncover<7->{\only<1-7>{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?}\only<8>{\textcolor{darkgreen}{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?}}} \\
+\textcolor{white}{Textual analysis of CHEP/ACAT} & \textcolor{white}{Long-view historical trends.} & \textcolor{white}{Only for those who give talks, and what they choose to talk about.} \\
+\textcolor{white}{Analysis of source code online} & \textcolor{white}{Fine-grained, quantitative, average over many users.} & \textcolor{white}{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?} \\
 \end{tabular}
 \end{columns}
 \end{frame}
@@ -156,13 +156,49 @@ Relative rates, such as new version adoption.
 \end{center}
 \end{frame}
 
+\begin{frame}{So what can we do instead?}
+\vspace{0.35 cm}
+\begin{columns}
+\column{1.05\linewidth}
+
+\renewcommand{\arraystretch}{0.85}
+\begin{tabular}{p{3 cm} p{4.7 cm} p{5.7 cm}}
+{\bf Method} & {\bf Good} & {\bf Bad} \\\hline
+\uncover<1->{Bug-reports} & \uncover<1->{Resolve immediate needs.} & \uncover<1->{Only hear from proactive people.} \\
+\uncover<1->{Surveys} & \uncover<1->{Can directly ask people what they think. Quantitative.} & \uncover<1->{Are the people who didn't fill it out correlated with the questions?} \\
+\uncover<1->{Focus groups} & \uncover<1->{As above, but open to free-form, generating new ideas.} & \uncover<1->{Need to follow up from the small group to a large survey.} \\
+\uncover<1->{Download stats} & \uncover<1->{People vote with their feet. Quantitative.} & \uncover<1->{Coarse-grained: only know package-level info. Skewed by batch jobs.} \\
+\uncover<2->{Textual analysis of CHEP/ACAT} & \uncover<2->{Long-view historical trends.} & \uncover<2->{Only for those who give talks, and what they choose to talk about.} \\
+\textcolor{white}{Analysis of source code online} & \textcolor{white}{Fine-grained, quantitative, average over many users.} & \textcolor{white}{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?} \\
+\end{tabular}
+\end{columns}
+\end{frame}
+
 \begin{frame}{What textual analysis of CHEP/ACAT is good for (one slide)}
 \vspace{0.35 cm}
-Discovering trends and changing interests. (``How buzzy is X compared to OOP?'')
+Discovering trends and changing interests.
 
 \begin{center}
-\includegraphics[width=0.9\linewidth]{PLOTS/chep-papers-paradigm.pdf}
+\includegraphics[width=\linewidth]{PLOTS/chep-papers-ml.pdf}
 \end{center}
+\end{frame}
+
+\begin{frame}{So what can we do instead?}
+\vspace{0.35 cm}
+\begin{columns}
+\column{1.05\linewidth}
+
+\renewcommand{\arraystretch}{0.85}
+\begin{tabular}{p{3 cm} p{4.7 cm} p{5.7 cm}}
+{\bf Method} & {\bf Good} & {\bf Bad} \\\hline
+\uncover<1->{Bug-reports} & \uncover<1->{Resolve immediate needs.} & \uncover<1->{Only hear from proactive people.} \\
+\uncover<1->{Surveys} & \uncover<1->{Can directly ask people what they think. Quantitative.} & \uncover<1->{Are the people who didn't fill it out correlated with the questions?} \\
+\uncover<1->{Focus groups} & \uncover<1->{As above, but open to free-form, generating new ideas.} & \uncover<1->{Need to follow up from the small group to a large survey.} \\
+\uncover<1->{Download stats} & \uncover<1->{People vote with their feet. Quantitative.} & \uncover<1->{Coarse-grained: only know package-level info. Skewed by batch jobs.} \\
+\uncover<1->{Textual analysis of CHEP/ACAT} & \uncover<1->{Long-view historical trends.} & \uncover<1->{Only for those who give talks, and what they choose to talk about.} \\
+\uncover<2->{Analysis of source code online} & \uncover<2->{Fine-grained, quantitative, average over many users.} & \uncover<2->{Only public repos, have to identify demographics with some seed: how to define ``particle physicists''?} \\
+\end{tabular}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Analysis of source code online (the rest of this talk)}
@@ -234,7 +270,7 @@ A little more ``software,'' ``engineer,'' but still lots of ``physics,'' ``stude
 
 \begin{frame}{What can we do once we have the repos?}
 \vspace{0.5 cm}
-Previously, I regex-searched them for ``\mintinline{python}{import XYZ}'' and ``\EscMintinline{c++}{\#include<XYZ>}''.
+% Previously, I regex-searched them for ``\mintinline{python}{import XYZ}'' and ``\EscMintinline{c++}{\#include<XYZ>}''.
 
 \vspace{0.5 cm}
 \uncover<2->{For this talk, I wanted to go further and build ASTs/statically analyze all of the code.}
