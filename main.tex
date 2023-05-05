@@ -33,7 +33,7 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \title[2023-05-09-chep23-analysis-of-physicists]{Analysis of physics analysis}
-\author{\underline{Henry Schreiner} and Jim Pivarski}
+\author{Jim Pivarski and \underline{Henry Schreiner}}
 \institute{Princeton University -- IRIS-HEP}
 \date{May 9, 2023}
 
@@ -204,7 +204,7 @@ Discovering trends and changing interests.
 \begin{frame}{Analysis of source code online (the rest of this talk)}
 \vspace{0.5 cm}
 
-A few years ago (2019), I stumbled upon a good technique:
+A few years ago (2019), Jim stumbled upon a good technique:
 
 \vspace{0.2 cm}
 \begin{itemize}
@@ -270,14 +270,14 @@ A little more ``software,'' ``engineer,'' but still lots of ``physics,'' ``stude
 
 \begin{frame}{What can we do once we have the repos?}
 \vspace{0.5 cm}
-% Previously, I regex-searched them for ``\mintinline{python}{import XYZ}'' and ``\EscMintinline{c++}{\#include<XYZ>}''.
+% Previously, Jim regex-searched them for ``\mintinline{python}{import XYZ}'' and ``\EscMintinline{c++}{\#include<XYZ>}''.
 
 \vspace{0.5 cm}
-\uncover<2->{For this talk, I wanted to go further and build ASTs/statically analyze all of the code.}
+\uncover<2->{For this talk, we wanted to go further and build ASTs/statically analyze all of the code.}
 
 \vspace{0.5 cm}
 \begin{uncoverenv}<3->
-I wasn't first to have this idea: see Chris Ostrouchov's \textcolor{blue}{\href{https://labs.quansight.org/blog/2019/05/python-package-function-usage}{Measuring API Usage}} (2019).
+We weren't first to have this idea: see Chris Ostrouchov's \textcolor{blue}{\href{https://labs.quansight.org/blog/2019/05/python-package-function-usage}{Measuring API Usage}} (2019).
 
 \begin{center}
 \includegraphics[width=0.55\linewidth]{PLOTS/chris-ostrouchov.png}
@@ -710,7 +710,7 @@ if isinstance(tree, ast.Call):
 \end{itemize}
 
 \vspace{0.25 cm}
-\uncover<6->{How to get my analysis code (source data are in public S3 buckets):}
+\uncover<6->{How to get the analysis code (source data are in public S3 buckets):}
 
 \vspace{0.1 cm}
 \scriptsize
