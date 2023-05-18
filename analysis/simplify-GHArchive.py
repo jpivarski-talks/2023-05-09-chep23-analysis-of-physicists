@@ -55,7 +55,10 @@ org_id_names = {}
 for filename in sorted(glob.glob("*.json.gz")):
     with gzip.open(filename, "r") as file:
         for line in file:
-            event = json.loads(line)
+            try:
+                event = json.loads(line)
+	    except json.decoder.JSONDecodeError:
+                continue
 
             try:
                 timestamp = int(datetime.fromisoformat(event["created_at"].rstrip("Z")).timestamp())
