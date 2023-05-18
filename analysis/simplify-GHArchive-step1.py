@@ -18,6 +18,7 @@ import numpy as np
 #                 print(json.dumps(event, indent=2))
 #                 print()
 
+# https://docs.github.com/en/webhooks-and-events/events/github-event-types
 event_type_to_id = {
     "CommitCommentEvent":             1,
     "CreateEvent":                    2,
