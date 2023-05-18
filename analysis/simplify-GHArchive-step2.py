@@ -24,12 +24,16 @@ for id, names in actor_id2name.items():
             actor_name2id[name] = set()
         actor_name2id[name].add(int(id))
 
-actor_id2name = json.dumps({k: sorted(v) for k, v in actor_id2name.items()}, separators=(",", ":")).encode("utf-8")
+for k, v in actor_id2name.items():
+    actor_id2name[k] = sorted(v)
+actor_id2name = json.dumps(actor_id2name, separators=(",", ":")).encode("utf-8")
 out.create_dataset("actor_id2name_json", (len(actor_id2name),), dtype="u1", compression=1)
 out["actor_id2name_json"][:] = np.frombuffer(actor_id2name, dtype="u1")
 del actor_id2name
 
-actor_name2id = json.dumps({k: sorted(v) for k, v in actor_name2id.items()}, separators=(",", ":")).encode("utf-8")
+for k, v in actor_name2id.items():
+    actor_name2id[k] = sorted(v)
+actor_name2id = json.dumps(actor_name2id, separators=(",", ":")).encode("utf-8")
 out.create_dataset("actor_name2id_json", (len(actor_name2id),), dtype="u1", compression=1)
 out["actor_name2id_json"][:] = np.frombuffer(actor_name2id, dtype="u1")
 del actor_name2id
@@ -54,12 +58,16 @@ for id, names in repo_id2name.items():
             repo_name2id[name] = set()
         repo_name2id[name].add(int(id))
 
-repo_id2name = json.dumps({k: sorted(v) for k, v in repo_id2name.items()}, separators=(",", ":")).encode("utf-8")
+for k, v in repo_id2name.items():
+    repo_id2name[k] = sorted(v)
+repo_id2name = json.dumps(repo_id2name, separators=(",", ":")).encode("utf-8")
 out.create_dataset("repo_id2name_json", (len(repo_id2name),), dtype="u1", compression=1)
 out["repo_id2name_json"][:] = np.frombuffer(repo_id2name, dtype="u1")
 del repo_id2name
 
-repo_name2id = json.dumps({k: sorted(v) for k, v in repo_name2id.items()}, separators=(",", ":")).encode("utf-8")
+for k, v in repo_name2id.items():
+    repo_name2id[k] = sorted(v)
+repo_name2id = json.dumps(repo_name2id, separators=(",", ":")).encode("utf-8")
 out.create_dataset("repo_name2id_json", (len(repo_name2id),), dtype="u1", compression=1)
 out["repo_name2id_json"][:] = np.frombuffer(repo_name2id, dtype="u1")
 del repo_name2id
@@ -84,12 +92,16 @@ for id, names in org_id2name.items():
             org_name2id[name] = set()
         org_name2id[name].add(int(id))
 
-org_id2name = json.dumps({k: sorted(v) for k, v in org_id2name.items()}, separators=(",", ":")).encode("utf-8")
+for k, v in org_id2name.items():
+    org_id2name[k] = sorted(v)
+org_id2name = json.dumps(org_id2name, separators=(",", ":")).encode("utf-8")
 out.create_dataset("org_id2name_json", (len(org_id2name),), dtype="u1", compression=1)
 out["org_id2name_json"][:] = np.frombuffer(org_id2name, dtype="u1")
 del org_id2name
 
-org_name2id = json.dumps({k: sorted(v) for k, v in org_name2id.items()}, separators=(",", ":")).encode("utf-8")
+for k, v in org_name2id.items():
+    org_name2id[k] = sorted(v)
+org_name2id = json.dumps(org_name2id, separators=(",", ":")).encode("utf-8")
 out.create_dataset("org_name2id_json", (len(org_name2id),), dtype="u1", compression=1)
 out["org_name2id_json"][:] = np.frombuffer(org_name2id, dtype="u1")
 del org_name2id
