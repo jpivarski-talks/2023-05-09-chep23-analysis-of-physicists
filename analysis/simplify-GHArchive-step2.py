@@ -15,6 +15,7 @@ for filename in glob.glob("*/actor_id_names.json"):
             actor_id2name[id] = set()
         for name in names:
             actor_id2name[id].add(name)
+    print(filename, flush=True)
 
 actor_name2id = {}
 for id, names in actor_id2name.items():
@@ -44,6 +45,7 @@ for filename in glob.glob("*/repo_id_names.json"):
             repo_id2name[id] = set()
         for name in names:
             repo_id2name[id].add(name)
+    print(filename, flush=True)
 
 repo_name2id = {}
 for id, names in repo_id2name.items():
@@ -73,6 +75,7 @@ for filename in glob.glob("*/org_id_names.json"):
             org_id2name[id] = set()
         for name in names:
             org_id2name[id].add(name)
+    print(filename, flush=True)
 
 org_name2id = {}
 for id, names in org_id2name.items():
