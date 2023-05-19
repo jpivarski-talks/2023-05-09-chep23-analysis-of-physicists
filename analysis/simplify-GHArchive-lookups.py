@@ -22,16 +22,12 @@ for lookup in [
         with h5py.File(filename, "r") as file:
             for name, ids in json.loads(np.asarray(file[lookup + "_name2id_json"]).tobytes()).items():
                 for x in ids:
-                    lines.add((x, name))
+                    lines.add(f"{x}\t{name}\n")
         print(filename, len(lines))
 
-    lines = list(lines)
-    lines.sort()
-    print("sorted")
-
     with open(lookup + "_id_name.txt", "w") as file:
-        for x, name in lines:
-            file.write(f"{x}\t{name}\n")
+        for line in lines:
+            file.write(line)
 
     print(lookup)
 
