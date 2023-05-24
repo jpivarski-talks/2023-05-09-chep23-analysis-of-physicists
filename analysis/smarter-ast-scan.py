@@ -326,7 +326,7 @@ class APIVisitor(ast.NodeVisitor):
 
 counter = Counter()
 
-project = jedi.Project("/Users/jpivarski/irishep/awkward/src/awkward")
+# project = jedi.Project("/Users/jpivarski/irishep/awkward/src/awkward")
 
 for filename in glob.glob(
     "/Users/jpivarski/storage/data/GitHub-CMSSW-user-nonfork-raw-data-1Mcut-awkward/*/*.tgz"
@@ -345,7 +345,7 @@ for filename in glob.glob(
                 except:
                     continue
 
-                script = jedi.Script(full_text, project=project)
+                script = jedi.Script(full_text)  # , project=project)
 
                 visitor = APIVisitor(script)
                 visitor.visit(syntax_tree)
