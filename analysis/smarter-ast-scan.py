@@ -5,6 +5,7 @@ import tarfile
 from collections import Counter
 
 import jedi
+import jupytext
 
 
 STDLIB_MODULES = {
@@ -285,9 +286,9 @@ class APIVisitor(ast.NodeVisitor):
                 trailer = "[" + self._literal(node.slice) + "]"
 
             out = []
-            for kind, match in self.results[
-                node.value.lineno, node.value.end_col_offset
-            ]:
+            for kind, match in self.results.get(
+                (node.value.lineno, node.value.end_col_offset), []
+            ):
                 out.append(("__getitem__", match + trailer))
             self.results[node.lineno, node.end_col_offset] = out
 
@@ -317,7 +318,9 @@ class APIVisitor(ast.NodeVisitor):
         trailer = "(" + ", ".join(args) + ")"
 
         out = []
-        for kind, match in self.results[node.func.lineno, node.func.end_col_offset]:
+        for kind, match in self.results.get(
+                (node.func.lineno, node.func.end_col_offset), []
+        ):
             out.append(("__call__", match + trailer))
         self.results[node.func.lineno, node.func.end_col_offset] = out
 
@@ -328,33 +331,51 @@ counter = Counter()
 
 # project = jedi.Project("/Users/jpivarski/irishep/awkward/src/awkward")
 
-for filename in glob.glob(
+output_dir = "/tmp/results"
+
+for index, filename in enumerate(glob.glob(
     "/Users/jpivarski/storage/data/GitHub-CMSSW-user-nonfork-raw-data-1Mcut-awkward/*/*.tgz"
-):
+)):
     print(filename)
     with tarfile.open(filename) as tgz:
         for info in tgz:
-            if info.name.endswith(".py"):
+            if info.name.lower().endswith(".py"):
                 print("    " + info.name)
 
-                with tgz.extractfile(info) as file:
-                    full_text = file.read()
-
                 try:
-                    syntax_tree = ast.parse(full_text)
+                    with tgz.extractfile(info) as file:
+                        full_text = file.read().decode("utf-8", errors="surrogateescape")
                 except:
                     continue
 
-                script = jedi.Script(full_text)  # , project=project)
+            elif info.name.lower().endswith(".ipynb"):
+                print("    " + info.name)
 
-                visitor = APIVisitor(script)
-                visitor.visit(syntax_tree)
+                try:
+                    with tgz.extractfile(info) as file:
+                        notebook_full_text = file.read().decode("utf-8", errors="surrogateescape")
+                    notebook = jupytext.reads(notebook_full_text)
+                    full_text = jupytext.writes(notebook, fmt="py:percent")
+                except:
+                    continue
 
-                for (line, column), matches in visitor.results.items():
-                    for match in matches:
-                        counter[match] += 1 / len(matches)
+            else:
+                continue
 
-    break
+            try:
+                syntax_tree = ast.parse(full_text)
+            except:
+                continue
 
-for k, v in sorted(counter.items(), key=lambda pair: pair[1]):
-    print(f"{v:10.3f} {k}")
+            script = jedi.Script(full_text)  # , project=project)
+
+            visitor = APIVisitor(script)
+            visitor.visit(syntax_tree)
+
+            for (line, column), matches in visitor.results.items():
+                for match in matches:
+                    counter[match] += 1 / len(matches)
+
+    with open(f"{output_dir}/result-after-{index}.txt", "w") as output:
+        for k, v in sorted(counter.items(), key=lambda pair: pair[1]):
+            print(f"{v:10.3f} {k}", file=output)
