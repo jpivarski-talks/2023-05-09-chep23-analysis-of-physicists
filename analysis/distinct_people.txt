@@ -105,7 +105,7 @@
 11810069	Belekkk	IDK
 4160723	benbovy	GEO
 12981236	bencwallace	AI
-13618205	Benjamin-Lee	MEDICINE
+13618205	Benjamin-Lee	MEDICAL
 20844540	Benjamin-T	IDK
 9391	benji-york	SE
 4083697	benkrikler	HEP
@@ -498,7 +498,7 @@
 36245370	karosc	DS
 32736398	Kasonnara	SE
 555667	kazimuth	SE
-4488943	kbaikov	Se
+4488943	kbaikov	SE
 11478740	KeAWang	CS
 14808389	keewis	DS
 5418547	kehw	HEP
@@ -536,7 +536,7 @@
 15164633	kylebarron	GEO
 37891912	kyleung271	SE
 19303690	lalitpagaria	SE
-8883928	lauesa	Ai
+8883928	lauesa	AI
 17688577	LaurenceWarne	MATH
 9991635	lauridsj	HEP
 30724920	Laurits7	HEP
